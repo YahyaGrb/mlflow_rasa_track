@@ -44,4 +44,5 @@ def _get_run_config(template_path, params, destination):
         run_config_yml = f.read().format(**params)
         with open(file_path, 'w+') as temp_f:
             temp_f.write(run_config_yml)
+            print(run_config_yml)
     return file_path

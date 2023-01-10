@@ -36,7 +36,6 @@ def  workflow(params, config_template,train_data, validation_data):
         mlflow.set_experiment("track_rasa")
         with tempfile.TemporaryDirectory() as temp_config_dir:
             generated_config =_get_run_config(config_template, params, temp_config_dir)
-
             logger.info("Starting to train")
             train_model = _get_or_run("train", {"config":generated_config, "training":train_data})
             logger.info("Training complete")
