@@ -28,9 +28,9 @@ def _get_or_run(entrypoint, parameters, synchronous=True): #removed git commit a
 
 @click.command(help="Perform unique run of the code with provided params.")
 @click.option('--params', default = {"epochs": 10, "threshold": 0.3, "model": ""})
-@click.argument("config_template", default="../files/hyperopt/template_config.yml")
-@click.argument("train_data", default="../files/hyperopt/training_data.yml")
-@click.argument("validation_data", default="../files/hyperopt/test_data.yml")
+@click.argument("config_template", default="files/template_config.yml")
+@click.argument("train_data", default="files/training_data.yml")
+@click.argument("validation_data", default="files/test_data.yml")
 def  workflow(params, config_template,train_data, validation_data):
     with mlflow.start_run():
         mlflow.set_experiment("track_rasa")
@@ -41,7 +41,6 @@ def  workflow(params, config_template,train_data, validation_data):
             train_model = _get_or_run("train", {"config":generated_config, "training":train_data})
             logger.info("Training complete")
             model_uri = os.path.join(train_model.info.artifact_uri, "model")
-            logger.info(model_uri)
             model_path = _transform_uri_to_path(model_uri)
             logger.info("Starting to test")
             test_model = _get_or_run("test", {"model_path": model_path, "validation": validation_data})

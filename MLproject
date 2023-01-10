@@ -11,9 +11,9 @@ entry_points:
   main:
     parameters:
           params: {type: dict, default: '{"epochs": 10, "threshold": 0.3, "model": "fr_core_news_md"}'}
-          config_template: {type: string, default: "../files/training_data.yml"}
-          train_data: {type: string, default: "../files/config.yml"}
-          validation_data: {type: string, default: "../files/test_data.yml"}
+          config_template: {type: string, default: "files/training_data.yml"}
+          train_data: {type: string, default: "files/config.yml"}
+          validation_data: {type: string, default: "files/test_data.yml"}
     command: "python main.py
                              --params {params}
                              {config_template}
