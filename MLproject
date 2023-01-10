@@ -1,13 +1,13 @@
 name: track_example
 
 
-// conda: ../environment.yml
+python_env: environment.yml
 
 entry_points:
   train:
-    command: "echo $PWD && python ../src/train.py"
+    command: "python src/train.py"
   test:
-    command: "python test.py"
+    command: "python src/test.py"
   main:
     parameters:
           params: {type: dict, default: '{"epochs": 10, "threshold": 0.3, "model": "fr_core_news_md"}'}
